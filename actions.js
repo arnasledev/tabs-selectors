@@ -1,4 +1,3 @@
-var teamTabsTemplate = '<li id="tab-team-{n}" class="{class}">Team {n} settings</li>'
 var teamsDisplayContent = $('.team-display-content')
 var defaultTeamSettings = ''
 var teamTabs = $('.teams-tabs')
@@ -12,12 +11,11 @@ $('.team-selector').on('change', function () {
 
     if (value > 0) {
         for (var i = 0; i < value; i++) {
-            var template = teamTabsTemplate.replace(/{n}/g, i + 1)
-            if (i < 1) {
-                template = template.replace('{class}', 'active')
-            } else {
-                template = template.replace('{class}', '')
-            }
+            var template = $('<li >', {
+                id: `tab-team-${i + 1}`,
+                class: (i < 1) ? 'active' : '',
+                text: `Team ${i + 1} settings`
+            })
 
             var thisTeamSettings = defaultTeamSettings[0].innerHTML
             // using zeptojs methods
